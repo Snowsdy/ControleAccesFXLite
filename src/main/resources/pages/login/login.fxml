@@ -2,18 +2,71 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="379.0" prefWidth="748.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.snowsdy.controleaccesfx.controllers.LoginController">
    <children>
       <HBox layoutX="123.0" layoutY="75.0" prefHeight="379.0" prefWidth="748.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox prefHeight="379.0" prefWidth="378.0" style="-fx-background-color: #cc422e;" HBox.hgrow="ALWAYS" />
-            <VBox alignment="TOP_CENTER" prefHeight="379.0" prefWidth="108.0" style="-fx-background-color: #b2ccd0;" HBox.hgrow="ALWAYS">
+            <VBox alignment="TOP_CENTER" prefHeight="379.0" prefWidth="378.0" style="-fx-background-color: #dab839;" HBox.hgrow="ALWAYS">
                <children>
-                  <Button fx:id="userTest" alignment="CENTER" mnemonicParsing="false" onAction="#addTest" text="Add User Test" />
+                  <Label contentDisplay="CENTER" text="Controle Access FX Lite" textAlignment="CENTER" underline="true">
+                     <font>
+                        <Font name="Consolas" size="32.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="32.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="379.0" prefWidth="108.0" style="-fx-background-color: #b2ccd0;" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="Log In">
+                     <font>
+                        <Font size="32.0" />
+                     </font>
+                  </Label>
+                  <Separator prefWidth="200.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets left="16.0" right="16.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="16.0" top="16.0" />
+                     </padding>
+                  </Separator>
+                  <TextField fx:id="loginField">
+                     <VBox.margin>
+                        <Insets bottom="8.0" left="16.0" right="16.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                     </padding>
+                  </TextField>
+                  <PasswordField fx:id="passwordField" onKeyPressed="#enterPressed">
+                     <VBox.margin>
+                        <Insets left="16.0" right="16.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                     </padding>
+                  </PasswordField>
+                  <Separator disable="true" opacity="0.0" orientation="VERTICAL" prefHeight="19.0" prefWidth="6.0">
+                     <VBox.margin>
+                        <Insets bottom="32.0" top="32.0" />
+                     </VBox.margin>
+                  </Separator>
+                  <Button fx:id="loginBtn" alignment="CENTER" mnemonicParsing="false" onAction="#login" text="Log In" />
                </children>
                <opaqueInsets>
                   <Insets />

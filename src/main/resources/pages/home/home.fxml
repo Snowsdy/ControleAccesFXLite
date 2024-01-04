@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.snowsdy.controleaccesfx.controllers.HomeController">
+   <children>
+      <BorderPane layoutX="197.0" layoutY="59.0" prefHeight="518.0" prefWidth="834.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <HBox alignment="CENTER" style="-fx-background-color: #dab839;" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="Home">
+                     <font>
+                        <Font size="32.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+         </top>
+         <left>
+            <VBox alignment="TOP_CENTER" prefHeight="439.0" prefWidth="254.0" style="-fx-background-color: #063948;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Bienvenue User" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="16.0" top="16.0" />
+                     </VBox.margin>
+                  </Label>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="24.0" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                     </padding>
+                     <children>
+                        <Button fx:id="homeBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#navigateToHome" text="Home" />
+                        <Button fx:id="usersBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#navigateToUsers" text="Users" />
+                        <Button fx:id="accessCardsBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#navigateToAccessCards" text="Access Cards" />
+                        <Button fx:id="attributionsBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#navigateToAttributions" text="Attributions" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </VBox>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <VBox alignment="TOP_CENTER" prefHeight="378.0" prefWidth="580.0" style="-fx-background-color: #494951;" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
