@@ -1,9 +1,6 @@
 package fr.snowsdy.controleaccesfx.logger;
 
-public abstract sealed class AbstractCustomLogger permits
-        CustomDangerLogger,
-        CustomInfoLogger,
-        CustomWarningLogger {
+public abstract sealed class AbstractCustomLogger permits CustomDangerLogger, CustomInfoLogger, CustomNetworkLogger, CustomWarningLogger {
     private final LogLevel logLevel;
 
     private final String message;

@@ -12,6 +12,7 @@ public class CustomLoggerSingleton {
                 case LOG_INFO -> logger = new CustomInfoLogger(message);
                 case LOG_WARNING -> logger = new CustomWarningLogger(message);
                 case LOG_DANGER -> logger = new CustomDangerLogger(message);
+                case LOG_NETWORK -> logger = new CustomNetworkLogger(message);
             }
         }
 
