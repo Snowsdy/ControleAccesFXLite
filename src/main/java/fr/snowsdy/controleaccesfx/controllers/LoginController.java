@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +23,8 @@ import java.util.Optional;
 public class LoginController {
 
     private final UserService service;
+
+    private final ApplicationContext applicationContext;
 
     @Value("classpath:/pages/home/home.fxml")
     private Resource resource;
@@ -35,8 +38,9 @@ public class LoginController {
     @FXML
     private PasswordField passwordField;
 
-    public LoginController(UserService service) {
+    public LoginController(UserService service, ApplicationContext applicationContext) {
         this.service = service;
+        this.applicationContext = applicationContext;
     }
 
     @FXML
@@ -53,11 +57,12 @@ public class LoginController {
 
             try {
                 FXMLLoader loader = new FXMLLoader(resource.getURL());
+                loader.setControllerFactory(applicationContext::getBean);
                 Scene scene = loginField.getScene();
                 scene.setRoot(loader.load());
-                // Set its new dimensions
-                scene.getWindow().setHeight(500);
-                scene.getWindow().setWidth(800);
+
+                HomeController homeController = loader.getController();
+                homeController.setWelcomeLabel("Bienvenue " + admin.getName());
             } catch (IOException e) {
                 System.err.println(e.getMessage());
             }

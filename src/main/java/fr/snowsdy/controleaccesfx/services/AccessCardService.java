@@ -4,6 +4,7 @@ import fr.snowsdy.controleaccesfx.entities.AccessCard;
 import fr.snowsdy.controleaccesfx.repositories.AccessCardRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -38,5 +39,10 @@ public class AccessCardService implements IService<AccessCard> {
     @Override
     public void saveAll(Iterable<AccessCard> values) {
         repository.saveAll(values);
+    }
+
+    @Override
+    public List<AccessCard> findAll() {
+        return repository.findAll();
     }
 }

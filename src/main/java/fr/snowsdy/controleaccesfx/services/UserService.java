@@ -5,6 +5,7 @@ import fr.snowsdy.controleaccesfx.entities.User;
 import fr.snowsdy.controleaccesfx.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -39,12 +40,9 @@ public class UserService implements IService<User> {
         repository.saveAll(values);
     }
 
-    public Optional<User> findByName(String name) {
-        return repository.findByName(name);
-    }
-
-    public Optional<Admin> findByLogin(String login) {
-        return repository.findByLogin(login);
+    @Override
+    public List<User> findAll() {
+        return repository.findAll();
     }
 
     public Optional<Admin> findByPassword(String password) {

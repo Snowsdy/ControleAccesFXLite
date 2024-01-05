@@ -40,10 +40,6 @@ public class Admin extends User implements Serializable {
         this.password = codeMD5(mdp);
     }
 
-    public void setEncodedPassword(String mdp) {
-        this.password = mdp;
-    }
-
     public static String codeMD5(String msg) {
         StringBuilder code = new StringBuilder();
         byte[] b;
@@ -66,10 +62,6 @@ public class Admin extends User implements Serializable {
         }
 
         return code.toString();
-    }
-
-    public boolean isValid(String mdp) {
-        return this.password.equals(codeMD5(mdp));
     }
 
     @Override

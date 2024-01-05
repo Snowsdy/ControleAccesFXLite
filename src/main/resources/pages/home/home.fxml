@@ -2,14 +2,21 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.snowsdy.controleaccesfx.controllers.HomeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="830.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.snowsdy.controleaccesfx.controllers.HomeController">
    <children>
       <BorderPane layoutX="197.0" layoutY="59.0" prefHeight="518.0" prefWidth="834.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -18,7 +25,7 @@
                   <Insets />
                </BorderPane.margin>
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" text="Home">
+                  <Label fx:id="homeLabel" alignment="CENTER" contentDisplay="CENTER" text="Users">
                      <font>
                         <Font size="32.0" />
                      </font>
@@ -32,9 +39,9 @@
          <left>
             <VBox alignment="TOP_CENTER" prefHeight="439.0" prefWidth="254.0" style="-fx-background-color: #063948;" BorderPane.alignment="CENTER">
                <children>
-                  <Label text="Bienvenue User" textFill="WHITE">
+                  <Label fx:id="welcomeLabel" text="Bienvenue User" textFill="WHITE" wrapText="true">
                      <font>
-                        <Font size="24.0" />
+                        <Font size="16.0" />
                      </font>
                      <VBox.margin>
                         <Insets bottom="16.0" top="16.0" />
@@ -47,21 +54,193 @@
                      <padding>
                         <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
                      </padding>
-                     <children>
-                        <Button fx:id="homeBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#navigateToHome" text="Home" />
-                        <Button fx:id="usersBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#navigateToUsers" text="Users" />
-                        <Button fx:id="accessCardsBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#navigateToAccessCards" text="Access Cards" />
-                        <Button fx:id="attributionsBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#navigateToAttributions" text="Attributions" />
-                     </children>
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
+                     <Button fx:id="btnUsers" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleNavigation" text="Users" />
+                     <Button fx:id="btnAccessCards" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleNavigation" text="Access Cards" />
+                     <Button fx:id="btnAttributions" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleNavigation" text="Attributions" />
+                     <Separator orientation="VERTICAL" prefHeight="200.0" visible="false" />
+                     <Button mnemonicParsing="false" onAction="#logout" text="Log Out" />
                   </VBox>
                </children>
             </VBox>
          </left>
          <center>
-            <VBox alignment="TOP_CENTER" prefHeight="378.0" prefWidth="580.0" style="-fx-background-color: #494951;" BorderPane.alignment="CENTER" />
+            <StackPane fx:id="stackPane" style="-fx-background-color: #494951;" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox fx:id="attributionsView" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="600.0">
+                     <children>
+                        <ListView fx:id="attributionsListView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                        <VBox alignment="CENTER" prefHeight="400.0" prefWidth="220.0" spacing="16.0" style="-fx-background-color: #494951;">
+                           <children>
+                              <Label text="Attribution's Info" textFill="#dab839">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="8.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Separator prefWidth="200.0">
+                                       <VBox.margin>
+                                          <Insets left="16.0" right="16.0" />
+                                       </VBox.margin>
+                                    </Separator>
+                                    <VBox maxWidth="1.7976931348623157E308" prefWidth="100.0">
+                                       <children>
+                                          <Label text="Selected User" textFill="#dab839" />
+                                          <ComboBox fx:id="usersComboBox" prefHeight="26.0" prefWidth="270.0">
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                          </ComboBox>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="8.0" left="16.0" right="16.0" top="16.0" />
+                                       </VBox.margin>
+                                    </VBox>
+                                    <VBox maxWidth="1.7976931348623157E308" prefWidth="100.0">
+                                       <children>
+                                          <Label text="Selected Access Card" textFill="#dab839" />
+                                          <ComboBox fx:id="accessCardsComboBox" prefHeight="26.0" prefWidth="270.0" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="8.0" left="16.0" right="16.0" />
+                                       </VBox.margin>
+                                    </VBox>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="12.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#saveAttribution" text="Save" />
+                                          <Button mnemonicParsing="false" onAction="#deleteAttribution" text="Delete" />
+                                          <Button mnemonicParsing="false" onAction="#resetSelectedValues" text="Cancel" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="accessCardsView" alignment="CENTER" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="600.0">
+                     <children>
+                        <ListView fx:id="accessCardsListView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                        <VBox alignment="CENTER" prefHeight="400.0" prefWidth="220.0" spacing="16.0" style="-fx-background-color: #494951;">
+                           <children>
+                              <Label text="Access Card's Info" textFill="#dab839">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="8.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Separator prefWidth="200.0">
+                                       <VBox.margin>
+                                          <Insets left="16.0" right="16.0" />
+                                       </VBox.margin>
+                                    </Separator>
+                                    <VBox maxWidth="1.7976931348623157E308" prefWidth="100.0">
+                                       <children>
+                                          <Label text="Serial Number" textFill="#dab839" />
+                                          <TextField fx:id="serialNumberField" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="8.0" left="16.0" right="16.0" top="16.0" />
+                                       </VBox.margin>
+                                    </VBox>
+                                    <HBox alignment="CENTER" prefHeight="53.0" prefWidth="220.0" spacing="12.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#saveAccesCard" text="Save" />
+                                          <Button mnemonicParsing="false" onAction="#deleteAccessCard" text="Delete" />
+                                          <Button layoutX="121.0" layoutY="24.0" mnemonicParsing="false" onAction="#resetSelectedValues" text="Cancel" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="usersView" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="600.0">
+                     <children>
+                        <ListView fx:id="usersListView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                        <VBox alignment="CENTER" prefHeight="400.0" prefWidth="220.0" spacing="16.0" style="-fx-background-color: #494951;">
+                           <children>
+                              <Label text="User's Info" textFill="#dab839">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="8.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Separator prefWidth="200.0">
+                                       <VBox.margin>
+                                          <Insets left="16.0" right="16.0" />
+                                       </VBox.margin>
+                                    </Separator>
+                                    <VBox maxWidth="1.7976931348623157E308" prefWidth="100.0">
+                                       <children>
+                                          <Label text="Name" textFill="#dab839" />
+                                          <TextField fx:id="nameField" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="8.0" left="16.0" right="16.0" top="16.0" />
+                                       </VBox.margin>
+                                    </VBox>
+                                    <VBox maxWidth="1.7976931348623157E308" prefWidth="100.0">
+                                       <children>
+                                          <Label text="Login" textFill="#dab839" />
+                                          <TextField fx:id="loginField" disable="true" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="8.0" left="16.0" right="16.0" />
+                                       </VBox.margin>
+                                    </VBox>
+                                    <VBox layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefWidth="100.0">
+                                       <children>
+                                          <Label text="Password" textFill="#dab839" />
+                                          <PasswordField fx:id="passwordField" disable="true">
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                          </PasswordField>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="8.0" left="16.0" right="16.0" />
+                                       </VBox.margin>
+                                    </VBox>
+                                    <VBox layoutX="26.0" layoutY="132.0" maxWidth="1.7976931348623157E308" prefWidth="100.0">
+                                       <children>
+                                          <Label text="Is an Admin ?" textFill="#dab839" />
+                                          <CheckBox fx:id="isAdminCheckBox" mnemonicParsing="false" onAction="#activateAdminMode" text="Yes" textFill="#dab839" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="16.0" left="16.0" right="16.0" />
+                                       </VBox.margin>
+                                    </VBox>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="12.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#saveUser" text="Save" />
+                                          <Button mnemonicParsing="false" onAction="#deleteUser" text="Delete" />
+                                          <Button mnemonicParsing="false" onAction="#resetSelectedValues" text="Cancel" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </StackPane>
          </center>
       </BorderPane>
    </children>

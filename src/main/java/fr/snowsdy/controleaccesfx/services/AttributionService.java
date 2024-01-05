@@ -1,11 +1,11 @@
 package fr.snowsdy.controleaccesfx.services;
 
-import fr.snowsdy.controleaccesfx.entities.AccessCard;
 import fr.snowsdy.controleaccesfx.entities.Attribution;
-import fr.snowsdy.controleaccesfx.entities.User;
 import fr.snowsdy.controleaccesfx.repositories.AttributionRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -20,9 +20,11 @@ public class AttributionService implements IService<Attribution> {
     @Override
     public void save(Attribution attr) {
         Optional<Attribution> optionalAttr = repository.findByAccessCard(attr.getAccessCard());
-        if (optionalAttr.isPresent()) {
-            throw new IllegalStateException("This attribution is already granted.");
-        }
+        optionalAttr.ifPresent(attribution -> {
+            if ((Objects.equals(attr.getUser().getName(), attribution.getUser().getName())) && (Objects.equals(attr.getAccessCard().getSerialNumber(), attribution.getAccessCard().getSerialNumber()))) {
+                throw new IllegalStateException("This attribution is already granted by this user and this access card.");
+            }
+        });
         repository.save(attr);
     }
 
@@ -40,11 +42,8 @@ public class AttributionService implements IService<Attribution> {
         repository.saveAll(values);
     }
 
-    public Optional<Attribution> findByAccessCard(AccessCard accessCard) {
-        return repository.findByAccessCard(accessCard);
-    }
-
-    public Optional<Attribution> findByUser(User user) {
-        return repository.findByUser(user);
+    @Override
+    public List<Attribution> findAll() {
+        return repository.findAll();
     }
 }

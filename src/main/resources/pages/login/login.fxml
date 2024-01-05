@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="379.0" prefWidth="748.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.snowsdy.controleaccesfx.controllers.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.snowsdy.controleaccesfx.controllers.LoginController">
    <children>
       <HBox layoutX="123.0" layoutY="75.0" prefHeight="379.0" prefWidth="748.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="379.0" prefWidth="378.0" style="-fx-background-color: #dab839;" HBox.hgrow="ALWAYS">
+            <VBox alignment="TOP_CENTER" prefHeight="380.0" prefWidth="520.0" style="-fx-background-color: #dab839;" HBox.hgrow="ALWAYS">
                <children>
                   <Label contentDisplay="CENTER" text="Controle Access FX Lite" textAlignment="CENTER" underline="true">
                      <font>
